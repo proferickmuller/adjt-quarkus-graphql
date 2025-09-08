@@ -2,13 +2,24 @@ package br.pro.erm.livros.models;
 
 import java.time.LocalDate;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-public class Livro extends PanacheEntity {
-    public String titulo;
-    public String autor;
-    public LocalDate dataPublicacao;
-    public Boolean disponivel;
+@AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+public class Livro  {
+    @Id @GeneratedValue
+    private Long id;
+    private String titulo;
+    private String autor;
+    private LocalDate dataPublicacao;
+    private Boolean disponivel;
 }
