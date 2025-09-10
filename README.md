@@ -13,16 +13,9 @@ Usando quarkus-cli
 ```bash
 quarkus-dev
 ```
-```
-```
 
 Usando maven
 
 ```bash
 ./mvnw quarkus:dev
-```
-```
-
-
-```
 ```
