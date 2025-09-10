@@ -25,7 +25,7 @@ public class LivroResource {
     @Transactional
     public Livro addLivro(NovoLivroRequest request) {
         Livro livro = new Livro();
-        livro.setTitulo(request.nome());
+        livro.setTitulo(request.titulo());
         livro.setAutor(request.autor());
         livro.setDataPublicacao(java.time.LocalDate.parse(request.dataPublicacao()));
         livro.setDisponivel(true);

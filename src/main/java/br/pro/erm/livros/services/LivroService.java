@@ -33,4 +33,9 @@ public class LivroService {
         List<Livro> livros = livroRepository.porNome(autor);
         return livros;
     }
+
+    public Livro buscarPorId(Long id) {
+        Livro livro = livroRepository.findById(id);
+        return livro;
+    }
 }

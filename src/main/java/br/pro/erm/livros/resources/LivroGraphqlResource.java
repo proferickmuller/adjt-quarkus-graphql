@@ -27,7 +27,7 @@ public class LivroGraphqlResource {
     @Transactional
     public Livro novoLivro(NovoLivroRequest livro) {
         Livro novoLivro = new Livro();
-        novoLivro.setTitulo(livro.nome());
+        novoLivro.setTitulo(livro.titulo());
         novoLivro.setAutor(livro.autor());
         novoLivro.setDataPublicacao(java.time.LocalDate.parse(livro.dataPublicacao()));
         novoLivro.setDisponivel(true);
@@ -47,5 +47,8 @@ public class LivroGraphqlResource {
         return livroService.buscarPorAutor(autor);
     }
 
-    
+    @Query 
+    public Livro livroPorId(Long id) {
+        return livroService.buscarPorId(id);
+    }    
 }
