@@ -11,7 +11,7 @@
 Usando quarkus-cli
 
 ```bash
-quarkus-dev
+quarkus dev
 ```
 
 Usando maven
