@@ -1,12 +1,21 @@
 # Projeto GraphQL usado em apresentação. 
 
+Antes, suba o banco de dados com o docker compose
+
+```bash
+docker compose up -d
+```
+
 ## Pre-requisitos: 
 
 - java >= 21
 - maven 
 - quarkus-cli (opcional)
 
-## Para rodar 
+> Caso use o mise, as ferramentas já estão pré instaladas no path, apenas roda `mise trust` e depois `mise install`.
+
+
+## Para rodar a aplicação localmente
 
 Usando quarkus-cli
 

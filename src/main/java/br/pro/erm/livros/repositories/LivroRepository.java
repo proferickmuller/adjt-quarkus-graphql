@@ -13,7 +13,8 @@ public class LivroRepository implements PanacheRepository<Livro> {
     }
 
     public List<Livro> porNome(String autor) {
-        return list("autor", autor);
+        return  find("autor.nome",  autor).list();
+
     }
 
 }

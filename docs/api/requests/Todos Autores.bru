@@ -1,0 +1,25 @@
+meta {
+  name: Todos Autores
+  type: graphql
+  seq: 1
+}
+
+post {
+  url: {{host}}/{{path}}
+  body: graphql
+  auth: inherit
+}
+
+body:graphql {
+  query {
+    allAutores {
+      id
+      nome
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

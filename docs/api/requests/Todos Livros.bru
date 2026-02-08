@@ -1,0 +1,31 @@
+meta {
+  name: Todos Livros
+  type: graphql
+  seq: 4
+}
+
+post {
+  url: {{host}}/{{path}}
+  body: graphql
+  auth: inherit
+}
+
+body:graphql {
+  query {
+    allLivros {
+      id
+      titulo
+      autor  {
+        id
+        nome
+      }
+      dataPublicacao
+      disponivel
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

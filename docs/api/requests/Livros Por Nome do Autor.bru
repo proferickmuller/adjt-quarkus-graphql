@@ -1,0 +1,25 @@
+meta {
+  name: Livros Por Nome do Autor
+  type: graphql
+  seq: 6
+}
+
+post {
+  url: {{host}}/{{path}}
+  body: graphql
+  auth: inherit
+}
+
+body:graphql {
+  query {
+    livroPorAutor(autor: "Jose Saramago") {
+      id 
+      titulo
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

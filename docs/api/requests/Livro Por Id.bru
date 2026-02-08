@@ -1,0 +1,25 @@
+meta {
+  name: Livro Por Id
+  type: graphql
+  seq: 7
+}
+
+post {
+  url: {{host}}/{{path}}
+  body: graphql
+  auth: inherit
+}
+
+body:graphql {
+  query {
+    livroPorId(id: 4) {
+      id 
+      titulo
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

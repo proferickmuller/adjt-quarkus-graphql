@@ -1,0 +1,34 @@
+meta {
+  name: Novo Livro
+  type: graphql
+  seq: 3
+}
+
+post {
+  url: {{host}}/{{path}}
+  body: graphql
+  auth: inherit
+}
+
+body:graphql {
+  mutation NovoLivro($livro: NovoLivroRequestInput) {
+    novoLivro(livro: $livro) {
+      id
+    }
+  }
+}
+
+body:graphql:vars {
+  {
+    "livro": {
+      "titulo": "Ensaio sobre a cegueira", 
+      "autor": 1, 
+      "dataPublicacao":"1995-10-25"
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
