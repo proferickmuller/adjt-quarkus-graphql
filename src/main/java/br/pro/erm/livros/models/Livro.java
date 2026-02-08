@@ -2,24 +2,61 @@ package br.pro.erm.livros.models;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+
 
 @Entity
-@AllArgsConstructor
-@Getter
-@Setter
-@NoArgsConstructor
 public class Livro  {
     @Id @GeneratedValue
     private Long id;
     private String titulo;
-    private String autor;
+
+    @ManyToOne
+    @JoinColumn(name="autor_id", nullable = false)
+    private Autor autor;
+
     private LocalDate dataPublicacao;
     private Boolean disponivel;
+
+    public Livro() {    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
+    public LocalDate getDataPublicacao() {
+        return dataPublicacao;
+    }
+
+    public void setDataPublicacao(LocalDate dataPublicacao) {
+        this.dataPublicacao = dataPublicacao;
+    }
+
+    public Boolean getDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(Boolean disponivel) {
+        this.disponivel = disponivel;
+    }
 }

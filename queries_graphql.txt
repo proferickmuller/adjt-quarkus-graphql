@@ -1,0 +1,35 @@
+mutation NovoAutor($nomeAutor: String) {
+	novoAutor(nome: $nomeAutor) {
+    id
+  }
+}
+
+{ "nomeAutor": "Nome do Autor" }
+
+---
+
+query {
+  allAutores {
+    id
+    nome
+  }
+}
+
+---
+
+mutation NovoAutor($req:NovoLivroRequestInput) {
+  novoLivro(livro: $req) {
+    id
+    titulo
+    autor {
+      nome
+    }
+  }
+}
+
+{"req": {
+  "titulo":"Ensaio sobre a cegueira",
+  "autor":"1",
+  "dataPublicacao":"1990-01-01"
+}}
+

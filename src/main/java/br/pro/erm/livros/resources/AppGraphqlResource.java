@@ -2,6 +2,8 @@ package br.pro.erm.livros.resources;
 
 import java.util.List;
 
+import br.pro.erm.livros.models.Autor;
+import br.pro.erm.livros.services.AutorService;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
 import org.eclipse.microprofile.graphql.Query;
@@ -13,10 +15,13 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DefaultValue;
 
 @GraphQLApi
-public class LivroGraphqlResource {
+public class AppGraphqlResource {
 
     @Inject
     LivroService livroService;
+
+    @Inject
+    AutorService autorService;
 
     @Query("allLivros")
     public List<Livro> getAll() {
@@ -26,13 +31,24 @@ public class LivroGraphqlResource {
     @Mutation 
     @Transactional
     public Livro novoLivro(NovoLivroRequest livro) {
+        Autor autor = autorService.buscarPorId(livro.autor());
+
         Livro novoLivro = new Livro();
         novoLivro.setTitulo(livro.titulo());
-        novoLivro.setAutor(livro.autor());
+        novoLivro.setAutor(autor);
         novoLivro.setDataPublicacao(java.time.LocalDate.parse(livro.dataPublicacao()));
         novoLivro.setDisponivel(true);
         var l = livroService.novoLivro(novoLivro);
         return l;
+    }
+
+    @Mutation
+    @Transactional
+    public Autor novoAutor(String nome) {
+        Autor novoAutor = new Autor();
+        novoAutor.setNome(nome);
+        var a = autorService.novoAutor(novoAutor);
+        return a;
     }
 
     @Mutation
@@ -50,5 +66,8 @@ public class LivroGraphqlResource {
     @Query 
     public Livro livroPorId(Long id) {
         return livroService.buscarPorId(id);
-    }    
+    }
+
+    @Query("allAutores")
+    public List<Autor> getAllAutores() {return  autorService.todos();}
 }

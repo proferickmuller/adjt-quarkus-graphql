@@ -2,7 +2,9 @@ package br.pro.erm.livros.resources;
 
 import java.util.List;
 
+import br.pro.erm.livros.models.Autor;
 import br.pro.erm.livros.models.Livro;
+import br.pro.erm.livros.repositories.AutorRepository;
 import br.pro.erm.livros.repositories.LivroRepository;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -16,6 +18,9 @@ public class LivroResource {
     @Inject 
     LivroRepository livroRepository;
 
+    @Inject
+    AutorRepository autorRepository;
+
     @GET 
     public List<Livro> getLivros() {
         return livroRepository.listAll();
@@ -24,9 +29,12 @@ public class LivroResource {
     @POST 
     @Transactional
     public Livro addLivro(NovoLivroRequest request) {
+
+        Autor autor = autorRepository.findById(Long.valueOf(request.autor()));
+
         Livro livro = new Livro();
         livro.setTitulo(request.titulo());
-        livro.setAutor(request.autor());
+        livro.setAutor(autor);
         livro.setDataPublicacao(java.time.LocalDate.parse(request.dataPublicacao()));
         livro.setDisponivel(true);
         livroRepository.persist(livro);
